@@ -5,7 +5,12 @@
 
 
 ######### Ab hier nur noch Berechnungen und Plots #########
-
+list.of.packages <- c("plotly")
+new.packages <-
+  list.of.packages[!(list.of.packages %in% installed.packages()[, "Package"])]
+if (length(new.packages))
+  install.packages(new.packages)
+library(plotly)
 
 generateSample = function(seed, n){
   set.seed(seed)
@@ -77,7 +82,7 @@ ui <- fluidPage(
         h4("The sample size"),
         min = 10,
         max = 50,
-        value = 5,
+        value = 20,
         step = 10
       ),
       radioButtons('boolReg',
